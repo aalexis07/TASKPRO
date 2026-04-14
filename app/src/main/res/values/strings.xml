@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">TASKPRO</string>
+    <string name="seleciona_tu_rol">SELECIONA TU ROL</string>
+    <string name="jefe_boton">JEFE</string>
+    <string name="admin_boton">ADMIN</string>
+    <string name="empleado_boton">EMPLEADO</string>
+    <string name="open">\n\n</string>
+    <string name="close">\n</string>
+    <string name="contraseña_unicio">Contraseña</string>
+    <string name="introdusca_tu_gmail">introdusca tu gmail</string>
+    <string name="volver">volver</string>
+    <string name="inciar">inciar</string>
+    <string name="olvide_mi_contrase_a">olvide mi contraseña</string>
+    <string name="recuperar">Recuperar</string>
+</resources>

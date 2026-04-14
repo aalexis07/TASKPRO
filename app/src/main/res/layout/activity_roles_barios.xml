@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roles_varios"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/Fondo_pantallas"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="325dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="196dp"
+        app:srcCompat="@drawable/tas_pro" />
+
+
+    <Button
+        android:id="@+id/jefe"
+        android:layout_width="320dp"
+        android:layout_height="72dp"
+        android:backgroundTint="@color/BLU"
+        android:layout_marginTop="20dp"
+        android:text="@string/jefe_boton"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+    <Button
+        android:id="@+id/admin"
+        android:layout_width="320dp"
+        android:layout_height="72dp"
+        android:backgroundTint="@color/BLU"
+        android:layout_marginTop="20dp"
+        android:text="@string/admin_boton"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+    <Button
+        android:id="@+id/empleado"
+        android:layout_width="320dp"
+        android:layout_height="72dp"
+        android:backgroundTint="@color/BLU"
+        android:layout_marginTop="20dp"
+        android:text="@string/empleado_boton"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/button_ingresar"
+        android:layout_width="135dp"
+        android:layout_height="62dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/Fondo_pantallas"
+        android:text="volver"
+        android:textSize="30sp" />
+
+</LinearLayout>

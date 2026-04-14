@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roles_varios"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Fondo_pantallas"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+            android:layout_width="325dp"
+            android:layout_height="196dp"
+            app:srcCompat="@drawable/tas_pro" />
+
+
+            <EditText
+                android:id="@+id/introduce_gmail"
+                android:layout_width="320dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="@string/introdusca_tu_gmail"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                />
+
+
+
+
+
+
+            <EditText
+                android:id="@+id/contraseña_inicio"
+                android:layout_width="320dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:paddingStart="10dp"
+                android:inputType="textPassword"
+                android:hint="@string/contraseña_unicio"
+                />
+
+
+
+
+
+
+        <Button
+            android:id="@+id/iniciar_secion"
+            android:layout_width="320dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/BLU"
+            android:text="@string/inciar"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/recuperar_con"
+            android:layout_width="250dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="-20dp"
+            android:backgroundTint="@color/Fondo_pantallas"
+            android:text="@string/olvide_mi_contrase_a"
+            android:textSize="20sp"
+
+            />
+
+        <Button
+            android:id="@+id/volver"
+            android:layout_width="135dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/Fondo_pantallas"
+            android:text="@string/volver"
+            android:textSize="30sp" />
+
+</LinearLayout>
+
+
+    </LinearLayout>
