@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Fondo_pantallas">#0f172a</color>
+    <color name="Fondo_del_header">#1D2A51</color>
     <color name="BLU">#2563EB</color>
     <color name="GRIS">#27272A</color>
 </resources>
