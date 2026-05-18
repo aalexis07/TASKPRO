@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="#1E293B"
+    app:strokeColor="#334155"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:id="@+id/tv_titulo_tarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Título"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/tv_descripcion_tarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción"
+            android:textColor="#CBD5E1"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_prioridad_tarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="alta"
+            android:textColor="#38BDF8"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <Spinner
+            android:id="@+id/spinner_estado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
+        <TextView
+            android:id="@+id/tv_direccion_tarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dirección"
+            android:textColor="#FACC15"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/btn_abrir_mapa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Abrir ubicación"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#0EA5E9"
+            android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/btn_compartir_ubicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compartir ubicación actual"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#22C55E"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_subir_foto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subir evidencia"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#F97316"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/btn_actualizar_estado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar estado"
+            android:layout_marginTop="14dp"
+            android:backgroundTint="#2563EB"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

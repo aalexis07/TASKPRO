@@ -1,9 +1,13 @@
 package com.example.taskpro.ui.main
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Menu
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -17,34 +21,106 @@ import com.example.taskpro.data.CredencialesManager
 import com.example.taskpro.data.UsuarioRepository
 import com.example.taskpro.ui.auth.LoginActivity
 import com.example.taskpro.ui.main.admin.AdminFragment
+import com.example.taskpro.ui.main.admin.UsuariosFragment
 import com.example.taskpro.ui.main.chat.ChatFragment
 import com.example.taskpro.ui.main.empleado.EmpleadoFragment
+import com.example.taskpro.ui.main.home.HomeFragment
 import com.example.taskpro.ui.main.jefe.JefeFragment
 import com.example.taskpro.ui.main.perfil.PerfilFragment
 import com.example.taskpro.ui.main.tareas.TareasFragment
-import com.example.taskpro.ui.main.admin.UsuariosFragment
-import com.example.taskpro.ui.main.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
+import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
 
+     val seleccionarImagen =
+
+        registerForActivityResult(
+            ActivityResultContracts.GetContent()
+        ) { uri: Uri? ->
+
+            if (uri != null) {
+
+                lifecycleScope.launch {
+
+                    try {
+
+                        val bitmap =
+                            MediaStore.Images.Media
+                                .getBitmap(
+                                    contentResolver,
+                                    uri
+                                )
+
+                        val stream =
+                            ByteArrayOutputStream()
+
+                        bitmap.compress(
+                            Bitmap.CompressFormat.JPEG,
+                            80,
+                            stream
+                        )
+
+                        val bytes =
+                            stream.toByteArray()
+
+                        val nombreArchivo =
+                            "${UUID.randomUUID()}.jpg"
+
+                        SupabaseClient.client
+                            .storage
+                            .from("evidencias")
+                            .upload(
+                                nombreArchivo,
+                                bytes
+                            )
+
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Imagen subida",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    } catch (e: Exception) {
+
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Error subiendo imagen",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar =
+            findViewById<Toolbar>(R.id.toolbar)
 
-        drawerLayout = findViewById(R.id.drawer_layout)
+        drawerLayout =
+            findViewById(R.id.drawer_layout)
 
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        val bottomNav =
+            findViewById<BottomNavigationView>(
+                R.id.bottom_nav
+            )
 
-        val navView = findViewById<NavigationView>(R.id.nav_view)
+        val navView =
+            findViewById<NavigationView>(
+                R.id.nav_view
+            )
 
         setSupportActionBar(toolbar)
 
@@ -61,59 +137,81 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
         toggle.drawerArrowDrawable.color =
-            ContextCompat.getColor(this, R.color.white)
+            ContextCompat.getColor(
+                this,
+                R.color.white
+            )
 
-        // Fragment inicial
-        cargarFragment(HomeFragment())
+        cargarFragment(
+            HomeFragment()
+        )
 
-        bottomNav.selectedItemId = R.id.nav_home
+        bottomNav.selectedItemId =
+            R.id.nav_home
 
-        // Configurar menú según rol
-        configurarMenuPorRol(navView.menu)
+        configurarMenuPorRol(
+            navView.menu
+        )
 
-        // Bottom Navigation
         bottomNav.setOnItemSelectedListener { item ->
 
             when (item.itemId) {
 
                 R.id.nav_home ->
-                    cargarFragment(HomeFragment())
-
+                    cargarFragment(
+                        HomeFragment()
+                    )
 
                 R.id.nav_tareas ->
-                    cargarFragment(TareasFragment())
+                    cargarFragment(
+                        TareasFragment()
+                    )
 
                 R.id.nav_chat ->
-                    cargarFragment(ChatFragment())
+                    cargarFragment(
+                        ChatFragment()
+                    )
 
                 R.id.nav_perfil ->
-                    cargarFragment(PerfilFragment())
+                    cargarFragment(
+                        PerfilFragment()
+                    )
             }
 
             true
         }
 
-        // Drawer lateral
         navView.setNavigationItemSelectedListener { item ->
 
             when (item.itemId) {
 
                 R.id.nav_dashboard ->
-                    cargarFragment(HomeFragment())
+                    cargarFragment(
+                        HomeFragment()
+                    )
 
                 R.id.nav_admin ->
-                    cargarFragment(AdminFragment())
+                    cargarFragment(
+                        AdminFragment()
+                    )
 
                 R.id.nav_usuarios ->
-                    cargarFragment(UsuariosFragment())
+                    cargarFragment(
+                        UsuariosFragment()
+                    )
 
                 R.id.nav_empleados ->
-                    cargarFragment(EmpleadoFragment())
+                    cargarFragment(
+                        EmpleadoFragment()
+                    )
 
                 R.id.nav_jefes ->
-                    cargarFragment(JefeFragment())
+                    cargarFragment(
+                        JefeFragment()
+                    )
 
                 R.id.nav_settings ->
+
                     Toast.makeText(
                         this,
                         "Configuración próximamente",
@@ -130,11 +228,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun configurarMenuPorRol(menu: Menu) {
+    private fun configurarMenuPorRol(
+        menu: Menu
+    ) {
 
         lifecycleScope.launch {
 
-            val rol = UsuarioRepository.obtenerRolActual()
+            val rol =
+                UsuarioRepository
+                    .obtenerRolActual()
 
             runOnUiThread {
 
@@ -142,65 +244,113 @@ class MainActivity : AppCompatActivity() {
 
                     "admin" -> {
 
-                        menu.findItem(R.id.nav_admin).isVisible = true
-                        menu.findItem(R.id.nav_usuarios).isVisible = true
-                        menu.findItem(R.id.nav_empleados).isVisible = true
-                        menu.findItem(R.id.nav_jefes).isVisible = true
+                        menu.findItem(
+                            R.id.nav_admin
+                        ).isVisible = true
+
+                        menu.findItem(
+                            R.id.nav_usuarios
+                        ).isVisible = true
+
+                        menu.findItem(
+                            R.id.nav_empleados
+                        ).isVisible = true
+
+                        menu.findItem(
+                            R.id.nav_jefes
+                        ).isVisible = true
                     }
 
                     "jefe" -> {
 
-                        menu.findItem(R.id.nav_admin).isVisible = false
-                        menu.findItem(R.id.nav_usuarios).isVisible = false
-                        menu.findItem(R.id.nav_empleados).isVisible = true
-                        menu.findItem(R.id.nav_jefes).isVisible = false
+                        menu.findItem(
+                            R.id.nav_admin
+                        ).isVisible = false
+
+                        menu.findItem(
+                            R.id.nav_usuarios
+                        ).isVisible = false
+
+                        menu.findItem(
+                            R.id.nav_empleados
+                        ).isVisible = true
+
+                        menu.findItem(
+                            R.id.nav_jefes
+                        ).isVisible = false
                     }
 
                     "empleado" -> {
 
-                        menu.findItem(R.id.nav_admin).isVisible = false
-                        menu.findItem(R.id.nav_usuarios).isVisible = false
-                        menu.findItem(R.id.nav_empleados).isVisible = false
-                        menu.findItem(R.id.nav_jefes).isVisible = false
+                        menu.findItem(
+                            R.id.nav_admin
+                        ).isVisible = false
+
+                        menu.findItem(
+                            R.id.nav_usuarios
+                        ).isVisible = false
+
+                        menu.findItem(
+                            R.id.nav_empleados
+                        ).isVisible = false
+
+                        menu.findItem(
+                            R.id.nav_jefes
+                        ).isVisible = false
                     }
 
                     else -> {
 
-                        menu.findItem(R.id.nav_admin).isVisible = false
-                        menu.findItem(R.id.nav_usuarios).isVisible = false
-                        menu.findItem(R.id.nav_empleados).isVisible = false
-                        menu.findItem(R.id.nav_jefes).isVisible = false
+                        menu.findItem(
+                            R.id.nav_admin
+                        ).isVisible = false
+
+                        menu.findItem(
+                            R.id.nav_usuarios
+                        ).isVisible = false
+
+                        menu.findItem(
+                            R.id.nav_empleados
+                        ).isVisible = false
+
+                        menu.findItem(
+                            R.id.nav_jefes
+                        ).isVisible = false
                     }
                 }
             }
         }
     }
 
-    private fun cargarFragment(fragment: Fragment) {
+    private fun cargarFragment(
+        fragment: Fragment
+    ) {
 
         lifecycleScope.launch {
 
             val rol =
-                UsuarioRepository.obtenerRolActual()
+                UsuarioRepository
+                    .obtenerRolActual()
 
-            val permitido = when (rol) {
+            val permitido =
+                when (rol) {
 
-                "admin" -> true
+                    "admin" -> true
 
-                "jefe" -> {
+                    "jefe" -> {
 
-                    fragment !is AdminFragment
+                        fragment !is AdminFragment
+                    }
+
+                    "empleado" -> {
+
+                        fragment is HomeFragment ||
+                                fragment is PerfilFragment ||
+                                fragment is TareasFragment
+                    }
+
+                    else -> false
                 }
-
-                "empleado" -> {
-
-                    fragment is HomeFragment ||
-                            fragment is PerfilFragment ||
-                            fragment is TareasFragment
-                }
-
-                else -> false
-            }
 
             runOnUiThread {
 
@@ -232,9 +382,14 @@ class MainActivity : AppCompatActivity() {
 
             try {
 
-                SupabaseClient.client.auth.signOut()
+                SupabaseClient.client
+                    .auth
+                    .signOut()
 
-                CredencialesManager.limpiarCredenciales(this@MainActivity)
+                CredencialesManager
+                    .limpiarCredenciales(
+                        this@MainActivity
+                    )
 
                 runOnUiThread {
 

@@ -82,6 +82,8 @@ dependencies {
     // Google Maps
     implementation(libs.google.maps)
     implementation(libs.google.location)
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("io.github.jan-tennert.supabase:storage-kt:3.1.4")
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.play)

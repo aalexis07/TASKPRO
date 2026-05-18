@@ -8,7 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskpro.R
 import com.example.taskpro.ui.main.empleado.model.EmpleadoItem
-
+import androidx.fragment.app.FragmentActivity
+import com.example.taskpro.ui.main.tareas.CrearTareaFragment
 class EmpleadosAdapter(
     private val lista: List<EmpleadoItem>
 ) : RecyclerView.Adapter<EmpleadosAdapter.ViewHolder>() {
@@ -63,7 +64,24 @@ class EmpleadosAdapter(
 
         holder.btnAsignar.setOnClickListener {
 
-            // luego abriremos crear tarea
+            val activity =
+                holder.itemView.context
+                        as FragmentActivity
+
+            activity.supportFragmentManager
+                .beginTransaction()
+
+                .replace(
+                    R.id.fragment_container,
+
+                    CrearTareaFragment.newInstance(
+                        empleado.id
+                    )
+                )
+
+                .addToBackStack(null)
+
+                .commit()
         }
     }
 
