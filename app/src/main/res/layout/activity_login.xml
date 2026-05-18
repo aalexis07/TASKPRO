@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Botón volver -->
+        <TextView
+            android:id="@+id/txt_volver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Volver"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="271dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/tas_pro" />
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar sesión"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
+
+        <!-- Descripción -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingresa tus credenciales para continuar"
+            android:textColor="#94A3B8"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="40dp"/>
+
+        <!-- Label correo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correo electrónico"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Input correo -->
+        <EditText
+            android:id="@+id/et_correo"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@drawable/bg_input"
+            android:hint="ejemplo@taskpro.com"
+            android:textColorHint="#94A3B8"
+            android:inputType="textEmailAddress"
+            android:paddingStart="18dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+        <!-- Espacio -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <!-- Label contraseña -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contraseña"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/txt_recuperar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="¿Olvidaste tu contraseña?"
+                android:textColor="@color/primary_blue"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Input contraseña -->
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_input"
+            android:hint="••••••••"
+            android:textColorHint="#94A3B8"
+            android:inputType="textPassword"
+            android:paddingStart="18dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+        <!-- Botón login -->
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_button_primary"
+            android:text="Entrar"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txt_huella"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Ingresar con huella"
+            android:textColor="@color/primary_blue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

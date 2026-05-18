@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/sawtooth"
-        android:title="Inicio"/>
 
     <item
-        android:id="@+id/cancel_button"
-        android:title="Perfil"/>
+        android:id="@+id/nav_dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard" />
 
     <item
-        android:id="@+id/accelerate"
-        android:title="Cerrar sesión"/>
+        android:id="@+id/nav_admin"
+        android:title="Administración"
+        android:icon="@drawable/ic_admin" />
+
+    <item
+        android:id="@+id/nav_usuarios"
+        android:title="Usuarios"
+        android:icon="@drawable/ic_users" />
+
+    <item
+        android:id="@+id/nav_empleados"
+        android:title="Empleados"
+        android:icon="@drawable/ic_employee" />
+
+    <item
+        android:id="@+id/nav_jefes"
+        android:title="Jefes"
+        android:icon="@drawable/ic_manager" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Configuración"
+        android:icon="@drawable/ic_settings" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Cerrar sesión"
+        android:icon="@drawable/ic_logout" />
 
 </menu>
